@@ -2,13 +2,31 @@ html, body {
   width: 100%;
   height: 100%;
   margin: 0;
-
-  font-family: Calibri;
+  background-color: hsla(0, 0%, 95%, 1);
+  font-family: Consolas, Helvetica, Arial, sans-serif;
 }
 
 #root {
   width: 100%;
   height: 100%;
+}
+
+@brand-primary: #4A7CB5; 
+.evision-logo {
+  padding: 8px 16px 0 16px;
+  background-color: @brand-primary;
+  color: #FFF;
+  z-index: 1;
+  text-align: center;
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  border-top-left-radius: 3px;
+
+  img {
+    width: 180px;
+    height: auto;
+  }
 }
 
 .app {
@@ -23,10 +41,11 @@ html, body {
     top: 0;
     bottom: 0;
     position: absolute;
-    border: 1px solid lightgray;
+    border: 4px solid darken(@brand-primary, 10%);
     border-radius: 5px;
     background-color: white;
     display: flex;
+    overflow: hidden;
 
     box-shadow: 10px 10px 10px -10px rgba(0,0,0,0.75);
 
@@ -36,6 +55,7 @@ html, body {
     }
     .chucks-description {
       flex: 2 1;
+      font-size: 22px;
     }
   }
 
