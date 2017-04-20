@@ -47,7 +47,7 @@ export default class CodeChallenge extends React.Component {
   state = { images: [] };
 
   componentDidMount() {
-    this._interval = setInterval(this._resolveImage, 2500);
+    this._interval = setInterval(this._resolveImage, 2000);
   }
 
   componentWillUnmount() {
@@ -61,11 +61,13 @@ export default class CodeChallenge extends React.Component {
 
   _resolveImage = () => {
     let { left, top } = this._getRandomImagePosition();
+    let { images } = this.state;
 
     try {
+      let last100Images = images.slice(Math.max(images.length - 100, 0));
       let image = heroImageResolver.getChuck() || heroImageResolver.getSteven();
 
-      this.setState({ images: [...this.state.images, { ...image, left, top }]});
+      this.setState({ images: [...last100Images, { ...image, left, top }]});
     } catch (ex) {
       console.error(ex);
       this.setState({ images: [...this.state.images, { ...heroImageResolver.getStallone(), left, top }]});
