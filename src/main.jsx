@@ -48,6 +48,7 @@ export default class CodeChallenge extends React.Component {
 
   componentDidMount() {
     this._interval = setInterval(this._resolveImage, 2000);
+    console.log('%c These are not the stones you\'re looking for.. ', 'background: #e8a72d; color: #003f87; font-size: 22px; font-weight: bold; font-family: Consolas, Helvetica, Arial, sans-serif');
   }
 
   componentWillUnmount() {
@@ -89,6 +90,9 @@ export default class CodeChallenge extends React.Component {
             <div className="chucks-description">
               <h1>Chuck Norris can kill two stones with one bird</h1>
               Kill the stones and get my images instead of <strong>Steven Seagal</strong> on the screen!
+              <div className="evision-logo">
+                <img src="../LogoEvision.png" alt="eVision Industry Software" />
+              </div>
             </div>
           </div>
         </div>
