@@ -6,10 +6,10 @@ const heroImageResolver = {
   _imgId: 0,
   _stalloneIndex: 0,
   _stevenIndex: 0,
-  _generateImageId = () => ++this._imgId,
   getStallone() {
-    this._stalloneIndex = this._stalloneIndex >= actionHeroImages.stallone.length
-      ? 0 : this._stalloneIndex + 1;
+
+    this._stalloneIndex = this._stalloneIndex < actionHeroImages.stallone.length - 1
+      ? this._stalloneIndex + 1 : 0;
 
     return {
       id: this._generateImageId(),
@@ -18,8 +18,8 @@ const heroImageResolver = {
 
   },
   getSteven() {
-    this._stevenIndex = this._stevenIndex >= actionHeroImages.steven.length
-      ? 0 : this._stevenIndex + 1;
+    this._stevenIndex = this._stevenIndex < actionHeroImages.steven.length - 1
+      ? this._stevenIndex + 1 : 0;
 
     return {
       id: this._generateImageId(),
@@ -36,6 +36,9 @@ const heroImageResolver = {
 
     console.error(new Error('Chuck is nowhere to be found!'));
     return null;
+  },
+  _generateImageId() {
+    return ++this._imgId;
   }
 };
 
@@ -44,7 +47,7 @@ export default class CodeChallenge extends React.Component {
   state = { images: [] };
 
   componentDidMount() {
-    this._interval = setInterval(this._resolveImage, 1000);
+    this._interval = setInterval(this._resolveImage, 2500);
   }
 
   componentWillUnmount() {
@@ -61,6 +64,7 @@ export default class CodeChallenge extends React.Component {
 
     try {
       let image = heroImageResolver.getChuck() || heroImageResolver.getSteven();
+
       this.setState({ images: [...this.state.images, { ...image, left, top }]});
     } catch (ex) {
       console.error(ex);
@@ -82,7 +86,7 @@ export default class CodeChallenge extends React.Component {
             <div className="chucks-image" />
             <div className="chucks-description">
               <h1>Chuck Norris can kill two stones with one bird</h1>
-              Kill these two stones and get my images instead of <strong>Steven Seagal</strong> on the screen!
+              Kill the stones and get my images instead of <strong>Steven Seagal</strong> on the screen!
             </div>
           </div>
         </div>
